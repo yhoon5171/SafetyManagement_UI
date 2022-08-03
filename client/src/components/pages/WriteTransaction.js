@@ -3,6 +3,7 @@ import PageTitle from "../common/PageTitle";
 import { Container, Row, Col, Card, CardHeader, CardBody, Button } from "shards-react";
 
 
+
 function WriteTransaction(){
     return(
       <Container fluid className="main-content-container px-4">
@@ -20,8 +21,8 @@ function WriteTransaction(){
         </Row>
 
       </Container>
+      
     )
 }
 
 export default WriteTransaction;
-

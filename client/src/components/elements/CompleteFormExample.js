@@ -66,7 +66,7 @@ const CompleteFormExample = () => (
                 파일 업로드
               </strong>
               <CustomFileUpload />
-              <Button outline theme="secondary" className="mb-2 mr-1">트랜잭션 업로드</Button>
+              <Button outline theme="secondary" className="mb-2 mr-1" onClick={() => {window.location.replace("/all")}}>트랜잭션 업로드</Button>
             </Form>
           </Col>
         </Row>

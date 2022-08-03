@@ -277,7 +277,6 @@ export default function App() {
           >
             {<MainNavbar />}
             <Routes>
-              {/* <Route path="/" element={<All/>} /> */}
               <Route path="/" element={<Navigate to="/all"/>} />
               <Route path="/all" element={<All/>} />
               <Route path="/cctv" element={<CCTV/>} />
@@ -292,6 +291,5 @@ export default function App() {
           </Col>
         </Row>
       </Container>
-
   )
 };
