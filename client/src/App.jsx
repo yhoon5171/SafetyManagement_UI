@@ -210,7 +210,7 @@ import TransactionContract from "../src/contracts/Transaction.json"
 import Web3 from 'web3';
 import moment from "moment";
 
-export default function App({block_list, transactionInstance}) {
+export default function App({block_list, transactionInstance, account}) {
   
 
 
@@ -236,7 +236,7 @@ export default function App({block_list, transactionInstance}) {
               <Route path="/temp" element={<Temp/>} />
               <Route path="/pressure" element={<Pressure/>} />
               <Route path="/ray" element={<Ray/>} />
-              <Route path="/writetransaction" element={<WriteTransaction transactionInstance={transactionInstance} />}/>
+              <Route path="/writetransaction" element={<WriteTransaction transactionInstance={transactionInstance} account={account} />}/>
             </Routes>
             {<MainFooter />}
           </Col>

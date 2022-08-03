@@ -8341,10 +8341,16 @@
       "links": {},
       "address": "0xf00bbB0f21242bb18e190d7a6E5b533ACe7dDC16",
       "transactionHash": "0xb1b437a8e55f42ebc99124b892f99f77edf2be581af978cbd62d9a3f07ade8c9"
+    },
+    "1659489754225": {
+      "events": {},
+      "links": {},
+      "address": "0xE0bCbA13A6b77612d41f8e3383c2382212740826",
+      "transactionHash": "0x74e2520fc0c10875c2bcfc975f6db8085c2ec59801dad8f4d4f758f138405e8c"
     }
   },
   "schemaVersion": "3.4.8",
-  "updatedAt": "2022-08-02T06:50:43.419Z",
+  "updatedAt": "2022-08-03T01:22:58.334Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

@@ -192,7 +192,7 @@ export default function Connection() {
       <p>Responsible Manager: {responsibleManager_}</p>
       <p>File Type: {fileType_}</p>
       <p>File Description: {fileDescription_}</p> */}
-      <App block_list={block_list} transactionInstance={transactionInstance}/>
+      <App block_list={block_list} transactionInstance={transactionInstance} account={account}/>
     </div>
   )
 }
