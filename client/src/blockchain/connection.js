@@ -1,55 +1,62 @@
-import React, { useEffect, useState } from "react";
-import {FileUpload} from './components/FileUpload';
-import "./App.css";
-import TransactionContract from "../src/contracts/Transaction.json"
+import React, { useEffect, useState, useRef } from "react";
+// import {FileUpload} from './components/FileUpload';
+import TransactionContract from "../contracts/Transaction.json"
 import Web3 from 'web3';
 import moment from "moment";
-import Axios from 'axios';
-import Login from './login';
-import Signup from './signup';
+// import Axios from 'axios';
+// import Login from './login';
+// import Signup from './signup';
+import App from '../App.jsx';
 
 
 
-export default function App() {
-  const [fileUrl, setFileUrl] = useState("");
+export default function Connection() {
+  // const [fileUrl, setFileUrl] = useState("");
+  // const [web3, setWeb3] = useState("");
+  // const [account, setAccount] = useState("");
+  // const [transactionInstance, setTransactionInstance] = useState("");
+  // const [loading, setLoading] = useState(false);
+
+  // const [category, setCategory] = useState("");
+  // const [name, setName] = useState("");
+  // const [ipfsHash, setIpfsHash] = useState("");
+  // const [registrant, setRegsitrant] = useState("");
+  // const [responsibleManager, setResponsibleManager] = useState("");
+  // const [fileType, setFileType] = useState("");
+  // const [fileDescription, setFileDescription] = useState("");
+  // const [transactionCnt, setTransactionCnt] = useState("");
+
+  // const [time, setTime] = useState("");
+  // const [ipfsHash_, setIpfsHash_] = useState("");
+  // const [category_, setCategory_] = useState("");
+  // const [name_, setName_] = useState("");
+  // const [registrant_, setRegsitrant_] = useState("");
+  // const [responsibleManager_, setResponsibleManager_] = useState("");
+  // const [fileType_, setFileType_] = useState("");
+  // const [fileDescription_, setFileDescription_] = useState("");
+
+  // const submitReview = ()=>{
+  //   Axios.post('http://localhost:3001/api/insert', {
+  //     category: category,
+  //     name: name,
+  //     time: time,
+  //     ipfsHash: ipfsHash,
+  //     registrant: registrant,
+  //     responsible: responsibleManager,
+  //     filetype: fileType,
+  //     filedes: fileDescription
+  //   }).then(()=>{
+  //     alert('등록 완료!');
+  //   })
+  // };
+
+
   const [web3, setWeb3] = useState("");
   const [account, setAccount] = useState("");
   const [transactionInstance, setTransactionInstance] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const [category, setCategory] = useState("");
-  const [name, setName] = useState("");
-  const [ipfsHash, setIpfsHash] = useState("");
-  const [registrant, setRegsitrant] = useState("");
-  const [responsibleManager, setResponsibleManager] = useState("");
-  const [fileType, setFileType] = useState("");
-  const [fileDescription, setFileDescription] = useState("");
-  const [transactionCnt, setTransactionCnt] = useState("");
-
-  const [time, setTime] = useState("");
-  const [ipfsHash_, setIpfsHash_] = useState("");
-  const [category_, setCategory_] = useState("");
-  const [name_, setName_] = useState("");
-  const [registrant_, setRegsitrant_] = useState("");
-  const [responsibleManager_, setResponsibleManager_] = useState("");
-  const [fileType_, setFileType_] = useState("");
-  const [fileDescription_, setFileDescription_] = useState("");
-
-  const submitReview = ()=>{
-    Axios.post('http://localhost:3001/api/insert', {
-      category: category,
-      name: name,
-      time: time,
-      ipfsHash: ipfsHash,
-      registrant: registrant,
-      responsible: responsibleManager,
-      filetype: fileType,
-      filedes: fileDescription
-    }).then(()=>{
-      alert('등록 완료!');
-    })
-  };
-
+  
+  const [block_list, setblock_list] = useState([]);
 
   useEffect(() => {
     async function componentWillMount(e) {
@@ -73,36 +80,45 @@ export default function App() {
       
     }
 
-    componentWillMount();
-    // setTimeout(() => {  console.log("World!"); }, 1000);
-    // updateAllTransactions();
-
-    
+    componentWillMount();    
 
   }, []);
 
+  const nextId = useRef(1);
+
+  
 
   useEffect(() => {
 
     async function updateAllTransactions(e){
       let events = await transactionInstance.getPastEvents('handleTransaction', {fromBlock:0, toBlock:'latest'});
-      for(let i=0; i<events.length; i+=1){
-        const record = {};
-        var time_ = moment.unix(events[i].returnValues.time);
+      
 
-        setCategory_(events[i].returnValues.category.toString());
-        setName_(events[i].returnValues.name.toString());
-        setTime(time_.toString());
-        setIpfsHash_(events[i].returnValues.ipfs_hash.toString());
-        setRegsitrant_(events[i].returnValues.registrant.toString());
-        setResponsibleManager_(events[i].returnValues.responsible_manager.toString());
-        setFileType_(events[i].returnValues.file_type.toString());
-        setFileDescription_(events[i].returnValues.file_description.toString());
-        setTransactionCnt(transactionInstance.cntTransactions());
+
+      for(let i = 0; i < events.length; i += 1){
+        
+        var time_ = moment.unix(events[i].returnValues.time);
+        
+        block_list.push({
+          id: nextId.current,
+          category : events[i].returnValues.category.toString(),
+          name : events[i].returnValues.name.toString(),
+          time : time_.toString(), 
+          ipfsHash : events[i].returnValues.ipfs_hash.toString(),
+          registrant : events[i].returnValues.registrant.toString(),
+          responsible : events[i].returnValues.responsible_manager.toString(),
+          filetype : events[i].returnValues.file_type.toString(),
+          filedes : events[i].returnValues.file_description.toString()
+        }
+        )
+        
+        nextId.current += 1;
+
         console.log(events[i].returnValues);
       }
-      console.log(events.length);
+      console.log('events.length = ', events.length);
       console.log(events);
+      console.log('block_list = ', block_list);
   
     }
 
@@ -111,29 +127,29 @@ export default function App() {
 }, [loading]);
 
 
-  const sendTransaction = async (e) => {
-    console.log(web3);
-    console.log(account);
-    console.log(transactionInstance);
-    await transactionInstance.sendTrans(category, name, ipfsHash, registrant, responsibleManager, fileType, fileDescription,{
-      from: account,
-      //value: e.web3.utils.toWei('10', "ether"),
-      gas: 1000000
-    })
+  // const sendTransaction = async (e) => {
+  //   console.log(web3);
+  //   console.log(account);
+  //   console.log(transactionInstance);
+  //   await transactionInstance.sendTrans(category, name, ipfsHash, registrant, responsibleManager, fileType, fileDescription,{
+  //     from: account,
+  //     //value: e.web3.utils.toWei('10', "ether"),
+  //     gas: 1000000
+  //   })
     
-    let events = await transactionInstance.getPastEvents('handleTransaction', {fromBlock: 0, toBlock:'latest'});
-    console.log(events[events.length-1].transactionHash)
-    //this.updateAllTransactions();
+  //   let events = await transactionInstance.getPastEvents('handleTransaction', {fromBlock: 0, toBlock:'latest'});
+  //   console.log(events[events.length-1].transactionHash)
+  //   //this.updateAllTransactions();
 
-    submitReview();
-  }
+  //   submitReview();
+  // }
 
 
 
 
   return (
     <div>
-      <Login />
+      {/* <Login />
       <Signup />
       <input type="text" placeholder="Type" onChange = {(event) => setCategory(event.target.value)}></input>
       <br></br>
@@ -163,7 +179,7 @@ export default function App() {
       </button>
       {/* <button onClick={updateAllTransactions}>
         트랜잭션 보여주기
-      </button> */}
+      </button> *//*}
       <br></br>
 
       <p>all transactions:</p>
@@ -175,7 +191,8 @@ export default function App() {
       <p>Registrant: {registrant_}</p>
       <p>Responsible Manager: {responsibleManager_}</p>
       <p>File Type: {fileType_}</p>
-      <p>File Description: {fileDescription_}</p>
+      <p>File Description: {fileDescription_}</p> */}
+      <App block_list={block_list} transactionInstance={transactionInstance}/>
     </div>
   )
 }

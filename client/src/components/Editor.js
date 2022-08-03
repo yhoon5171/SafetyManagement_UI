@@ -13,13 +13,13 @@ import {
 
 import CompleteFormExample from "./elements/CompleteFormExample"
 
-function Editor() {
+function Editor({transactionInstance}) {
   return (
     <Card small>
     <CardHeader className="border-bottom">
       <h6 className="m-0">Form Example</h6>
     </CardHeader>
-    <CompleteFormExample />
+    <CompleteFormExample transactionInstance={transactionInstance}/>
   </Card>
   )
 };

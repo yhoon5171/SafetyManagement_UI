@@ -1,8 +1,50 @@
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
 import PageTitle from "../common/PageTitle";
+import Pagination from "../pagination.js";
 
 
-function All(){
+function All({block_list}){
+  
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+
+  function repeatboardchild(child, start){
+    let arr = [];
+
+    if(start == 1) start = 0;
+    else{
+      start--;
+      start *= 10;
+    }
+
+    let end = start + 10;
+
+    if (end > child.length){
+      end = child.length;
+    }
+
+    console.log('child = ', child);
+    
+    console.log('child.length = %d', child.length);
+    for(let i = start; i < end; i++){
+      console.log('i = %d, start = %d, end = %d', i, start, end);
+      arr.push(
+      <tr key={i}>
+        <td>{i+1}</td>
+        <td>{child[i].name}</td>
+        <td>{child[i].responsible}</td>
+        <td>{child[i].filetype}</td>
+        <td>{child[i].filedes}</td>
+        <td>{child[i].time}</td>
+      </tr>
+      )
+    }
+
+    return arr;
+
+  }
+
     return(
       <Container fluid className="main-content-container px-4">
         <Row noGutters className="page-header py-4">
@@ -24,61 +66,37 @@ function All(){
                         #
                       </th>
                       <th scope="col" className="border-0">
-                        First Name
+                        File Name
                       </th>
                       <th scope="col" className="border-0">
-                        Last Name
+                        Registrant
                       </th>
                       <th scope="col" className="border-0">
-                        Country
+                        File Type
                       </th>
                       <th scope="col" className="border-0">
-                        City
+                        File Des
                       </th>
                       <th scope="col" className="border-0">
-                        Phone
+                        Upload Time
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Ali</td>
-                      <td>Kerry</td>
-                      <td>Russian Federation</td>
-                      <td>Gdańsk</td>
-                      <td>107-0339</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Clark</td>
-                      <td>Angela</td>
-                      <td>Estonia</td>
-                      <td>Borghetto di Vara</td>
-                      <td>1-660-850-1647</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Jerry</td>
-                      <td>Nathan</td>
-                      <td>Cyprus</td>
-                      <td>Braunau am Inn</td>
-                      <td>214-4225</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Colt</td>
-                      <td>Angela</td>
-                      <td>Liberia</td>
-                      <td>Bad Hersfeld</td>
-                      <td>1-848-473-7416</td>
-                    </tr>
+                    {repeatboardchild(block_list, page)}
                   </tbody>
                 </table>
               </CardBody>
             </Card>
           </Col>
         </Row>
+        
+    <Pagination
+          total={block_list.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
       </Container>
     )
 }
