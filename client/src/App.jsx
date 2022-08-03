@@ -183,65 +183,8 @@
 
 
 
-//*********************************내 UI!!!!!!**************************************//
-// import React from "react";
-// import { Route, Routes,  Navigate } from "react-router-dom";
 
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "./styles/shards-dashboards.1.1.0.min.css";
-
-// import Ray from "./components/pages/Ray";
-// import MainSidebar from "./components/layout/MainSidebar/MainSidebar";
-// import CCTV from "./components/pages/CCTV";
-// import All from "./components/pages/All";
-// import Pressure from "./components/pages/Pressure";
-// import Temp from "./components/pages/Temp";
-// import CheckList from "./components/pages/CheckList";
-// import Documents from "./components/pages/Documents";
-
-// import { Container, Row, Col } from "shards-react";
-// import MainNavbar from "./components/layout/MainNavbar/MainNavbar";
-// import MainFooter from "./components/layout/MainFooter";
-
-// import WriteTransaction from "./components/pages/WriteTransaction"
-
-// export default function App() {
-
-//   return(
-//       <Container fluid>
-//         <Row>
-//           <MainSidebar/>
-//           <Col
-//             className="main-content p-0"
-//             lg={{ size: 10, offset: 2 }}
-//             md={{ size: 9, offset: 3 }}
-//             sm="12"
-//             tag="main"
-//           >
-//             {<MainNavbar />}
-//             <Routes>
-//               {/* <Route path="/" element={<All/>} /> */}
-//               <Route path="/" element={<Navigate to="/all"/>} />
-//               <Route path="/all" element={<All/>} />
-//               <Route path="/cctv" element={<CCTV/>} />
-//               <Route path="/documents" element={<Documents/>} />
-//               <Route path="/checklist" element={<CheckList/>} />
-//               <Route path="/temp" element={<Temp/>} />
-//               <Route path="/pressure" element={<Pressure/>} />
-//               <Route path="/ray" element={<Ray/>} />
-//               <Route path="/writetransaction" element={<WriteTransaction />}/>
-//             </Routes>
-//             {<MainFooter />}
-//           </Col>
-//         </Row>
-//       </Container>
-
-//   )
-// };
-//*********************************내 UI!!!!!!**************************************//
-
-
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Route, Routes,  Navigate } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -262,7 +205,14 @@ import MainFooter from "./components/layout/MainFooter";
 
 import WriteTransaction from "./components/pages/WriteTransaction"
 
-export default function App() {
+import "./App.css";
+import TransactionContract from "../src/contracts/Transaction.json"
+import Web3 from 'web3';
+import moment from "moment";
+
+export default function App({block_list, transactionInstance}) {
+  
+
 
   return(
       <Container fluid>
@@ -278,14 +228,14 @@ export default function App() {
             {<MainNavbar />}
             <Routes>
               <Route path="/" element={<Navigate to="/all"/>} />
-              <Route path="/all" element={<All/>} />
+              <Route path="/all" element={<All block_list={block_list}/>} />
               <Route path="/cctv" element={<CCTV/>} />
               <Route path="/documents" element={<Documents/>} />
               <Route path="/checklist" element={<CheckList/>} />
               <Route path="/temp" element={<Temp/>} />
               <Route path="/pressure" element={<Pressure/>} />
               <Route path="/ray" element={<Ray/>} />
-              <Route path="/writetransaction" element={<WriteTransaction />}/>
+              <Route path="/writetransaction" element={<WriteTransaction transactionInstance={transactionInstance} />}/>
             </Routes>
             {<MainFooter />}
           </Col>
