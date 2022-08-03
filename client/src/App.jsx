@@ -227,7 +227,6 @@ export default function App({block_list, transactionInstance, account}) {
           >
             {<MainNavbar />}
             <Routes>
-              {/* <Route path="/" element={<All/>} /> */}
               <Route path="/" element={<Navigate to="/all"/>} />
               <Route path="/all" element={<All block_list={block_list}/>} />
               <Route path="/cctv" element={<CCTV/>} />
@@ -242,6 +241,5 @@ export default function App({block_list, transactionInstance, account}) {
           </Col>
         </Row>
       </Container>
-
   )
 };

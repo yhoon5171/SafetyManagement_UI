@@ -20,8 +20,8 @@ function WriteTransaction({transactionInstance, account}){
         </Row>
 
       </Container>
+      
     )
 }
 
 export default WriteTransaction;
-
