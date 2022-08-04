@@ -39,9 +39,9 @@ export const FileUpload = ({ setUrl, setIpfs }) => {
             if (!loading) {
                 return (
                     <div>
-                        <h5>
+                        {/* <h5>
                             {file.name} <Badge pill>{file.size} kb</Badge>
-                        </h5>
+                        </h5> */}
 
                         {uploaded ? (
                             <h5>

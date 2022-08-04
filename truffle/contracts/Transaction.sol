@@ -14,6 +14,8 @@ contract Transaction {
     }
 
     event handleTransaction(string category, string name, uint256 time, string ipfs_hash, string registrant, string responsible_manager, string file_type, string file_description);
+    event documentTransaction(string category, string name, uint256 time, string ipfs_hash, string registrant, string responsible_manager, string file_type, string file_description);
+    event checkTransaction(string category, string name, uint256 time, string ipfs_hash, string registrant, string responsible_manager, string file_type, string file_description);
 
     //saves all the transactions of the account
     mapping (address=>transaction) transactionIndex;
@@ -31,7 +33,12 @@ contract Transaction {
         transactionIndex[msg.sender] = newTransaction;
 
         emit handleTransaction(category, name, block.timestamp, ipfs_hash, registrant, responsible_manager, file_type, file_description);
+        if (keccak256(abi.encodePacked(category)) == keccak256(abi.encodePacked('Document')))
+            emit documentTransaction(category, name, block.timestamp, ipfs_hash, registrant, responsible_manager, file_type, file_description);
+        if (keccak256(abi.encodePacked(category)) == keccak256(abi.encodePacked('CheckList')))
+            emit checkTransaction(category, name, block.timestamp, ipfs_hash, registrant, responsible_manager, file_type, file_description);
     }
+ 
 
     //view all the transactions of the user
     function getAllTransactions() view external returns(transaction memory){

@@ -13,6 +13,9 @@ import {
   FormSelect,
   Button
 } from "shards-react";
+import { create as ipfsHttpClient } from 'ipfs-http-client'
+const ipfs = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+
 
 
 function CompleteFormExample({transactionInstance, account}){
@@ -22,11 +25,58 @@ function CompleteFormExample({transactionInstance, account}){
   const [Filedes, setFiledes] = useState("")
   const [Regsitrant, setRegsitrant] = useState("")
   const [Responsible, setResponsible] = useState("")
-  const [fileUrl, setFileUrl] = useState("");
-  const [fileType, setFileType] = useState("txt");
+  const [ipfsHash, setIpfsHash] = useState("");
+  const [Filetype, setFiletype] = useState("");
+  
+  const [file, setFile] = useState({})
+  const [fileUrl, setFileUrl] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [uploaded, setUploaded] = useState(false)
+
+
+  const uploadFile = async (e) => {
+    // setLoading(true)
+    e.preventDefault()
+
+    try {
+        const added = await ipfs.add(file);
+        console.log(file)
+        console.log(added)
+        const url = `https://ipfs.infura.io/ipfs/${added.path}`
+        console.log(url)
+        // setUrl(url)
+        setFileUrl(url)
+        setUploaded(true)
+        setIpfsHash(ipfsHash => added.path)
+        setLoading(true)
+    } catch (err) {
+        console.log('Error uploading the file : ', err)
+        setLoading(false)
+    }
+}
+
+const preUpload = (e) => {
+    if (e.target.value !== '') {
+        setFile(e.target.files[0])
+    } else {
+        setFile({})
+    }
+}
 
   const sendTransaction = async (e) => {
-    await transactionInstance.sendTrans(CategorySelect, Filename, fileUrl, Regsitrant, Responsible, fileType, Filedes,{
+
+    let cnt = file.name.length;
+    let target = '';
+    for(let i = cnt-1; i > 0; i-- ){
+      target += file.name[i];
+      if(file.name[i] == '.') break;
+    }
+    let temp = '';
+    for(let i = target.length-2; i >= 0; i--){
+      temp += target[i];
+    }
+    console.log(ipfsHash)
+    await transactionInstance.sendTrans(CategorySelect, Filename, ipfsHash, Regsitrant, Responsible, temp, Filedes,{
       from: account,
       //value: e.web3.utils.toWei('10', "ether"),
       gas: 1000000
@@ -35,7 +85,7 @@ function CompleteFormExample({transactionInstance, account}){
     let events = await transactionInstance.getPastEvents('handleTransaction', {fromBlock: 0, toBlock:'latest'});
     console.log(events[events.length-1].transactionHash)
     //this.updateAllTransactions();
-    window.location.replace("/all")
+    window.location.replace("/")
     // submitReview();
   }
   
@@ -44,15 +94,48 @@ function CompleteFormExample({transactionInstance, account}){
     console.log(CategorySelect);
   };
   
-  const CustomFileUpload = () => (
+  const ipfsupload = (e) => {
+    setFileUrl(e.target.value);
+    // setFiletype(fileUrl);
+    // setLoading(true);
+    preUpload(e);
+  }
+
+  const uploadbutton = () => {
+    if (file.name) {
+    return (
+      <div>
+    {ipfsHash ? (
+      <h5>
+          Uploaded Successfully ✅
+      </h5>
+  ) : 
+  (
+      <Button outline theme="secondary" className="mb-2 mr-1" onClick={uploadFile}>Upload File</Button>
+  )}
+  </div>
+    )
+  }
+  }
+
+  const CustomFileUpload = () => {
+
+    return (
     <div className="custom-file mb-3">
-      <input type="file" className="custom-file-input" id="customFile2" 
-                  onChange = {(event) => setFileUrl(event.target.value)}/>
-      <label className="custom-file-label" htmlFor="customFile2">
-        파일을 선택하세요
-      </label>
+    <input type="file" className="custom-file-input" id="customFile2" 
+                onChange = {ipfsupload}/>
+    {file.name ?
+    
+       (<label className="custom-file-label" htmlFor="customFile2">
+       {file.name}
+        </label>) : 
+        (<label className="custom-file-label" htmlFor="customFile2">
+       파일을 선택하세요
+        </label>)
+    }
     </div>
-  );
+    )
+  }
 
   return(
     <ListGroup flush>
@@ -65,8 +148,8 @@ function CompleteFormExample({transactionInstance, account}){
                 <FormSelect id="feInputState" value={CategorySelect} onChange={category_select}>
                   {/* <option>CCTV</option> */}
                   <option value = "선택">선택</option>
-                  <option value = "전자문서">전자문서</option>
-                  <option value = "체크리스트">체크리스트</option>
+                  <option value = "Document">전자문서</option>
+                  <option value = "CheckList">체크리스트</option>
                   {/* <option>온도 센서</option>
                   <option>압력 센서</option>
                   <option>적외선 센서</option>  */}
@@ -108,9 +191,11 @@ function CompleteFormExample({transactionInstance, account}){
               <strong className="d-block mb-2">
                 파일 업로드
               </strong>
-              <CustomFileUpload />
-              <Button outline theme="secondary" className="mb-2 mr-1" onClick={sendTransaction}>트랜잭션 업로드</Button>
             </Form>
+              <CustomFileUpload />
+              
+              {uploadbutton()}
+              <Button outline theme="secondary" className="mb-2 mr-1" onClick={sendTransaction}>트랜잭션 업로드</Button>
           </Col>
         </Row>
       </ListGroupItem>

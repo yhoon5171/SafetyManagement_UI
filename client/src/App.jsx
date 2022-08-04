@@ -228,10 +228,10 @@ export default function App({block_list, transactionInstance, account}) {
             {<MainNavbar />}
             <Routes>
               <Route path="/" element={<Navigate to="/all"/>} />
-              <Route path="/all" element={<All block_list={block_list}/>} />
+              <Route path="/all" element={<All transactionInstance={transactionInstance}/>} />
               <Route path="/cctv" element={<CCTV/>} />
-              <Route path="/documents" element={<Documents/>} />
-              <Route path="/checklist" element={<CheckList/>} />
+              <Route path="/documents" element={<Documents transactionInstance={transactionInstance}/>} />
+              <Route path="/checklist" element={<CheckList transactionInstance={transactionInstance}/>} />
               <Route path="/temp" element={<Temp/>} />
               <Route path="/pressure" element={<Pressure/>} />
               <Route path="/ray" element={<Ray/>} />

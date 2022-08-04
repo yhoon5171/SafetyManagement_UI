@@ -11,7 +11,7 @@
     "axios": "^0.27.2",
     "flux": "^4.0.3",
     "ganache-cli": "^6.12.2",
-    "ipfs-http-client": "^55.0.0",
+    "ipfs-http-client": "^57.0.3",
     "moment": "^2.29.4",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.15",
