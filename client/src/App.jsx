@@ -212,7 +212,7 @@ import moment from "moment";
 
 export default function App({block_list, transactionInstance, account}) {
   
-
+  console.log("App!!!")
 
   return(
       <Container fluid>
@@ -237,6 +237,7 @@ export default function App({block_list, transactionInstance, account}) {
               <Route path="/ray" element={<Ray/>} />
               <Route path="/writetransaction" element={<WriteTransaction transactionInstance={transactionInstance} account={account} />}/>
             </Routes>
+            <br></br><br></br>
             {<MainFooter />}
           </Col>
         </Row>

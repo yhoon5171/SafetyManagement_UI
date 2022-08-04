@@ -18,6 +18,7 @@ export default () => (
       <FormInput
         className="navbar-search"
         placeholder="Search for something..."
+        Style={{width:"20%"}}
       />
     </InputGroup>
   </Form>

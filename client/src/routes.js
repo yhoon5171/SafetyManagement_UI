@@ -19,46 +19,46 @@ export default [
     exact: true,
     layout: DefaultLayout,
     element: 'All',
-    component: () => <Navigate to="/all" />
+    component: () => <Navigate to="/connect/all" />
   },
   {
-    path: "/all",
+    path: "/connect//all",
     layout: DefaultLayout,
     element: 'All',
     component: All
   },
   {
-    path: "/cctv",
+    path: "/connect//cctv",
     layout: DefaultLayout,
     element: 'CCTV',
     component: CCTV
   },
   {
-    path: "/documents",
+    path: "/connect//documents",
     layout: DefaultLayout,
     element: 'Documents',
     component: Documents
   },
   {
-    path: "/checklists",
+    path: "/connect//checklists",
     layout: DefaultLayout,
     element: 'CheckList',
     component: CheckList
   },
   {
-    path: "/temperature",
+    path: "/connect//temperature",
     layout: DefaultLayout,
     element: 'Temp',
     component: Temp
   },
   {
-    path: "/pressure",
+    path: "/connect//pressure",
     layout: DefaultLayout,
     element: 'Pressure',
     component: Pressure
   },
   {
-    path: "/ray",
+    path: "/connect//ray",
     layout: DefaultLayout,
     element: 'Ray',
     component: Ray
