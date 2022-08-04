@@ -3,7 +3,7 @@ import PageTitle from "../common/PageTitle";
 import { Container, Row, Col, Card, CardHeader, CardBody, Button } from "shards-react";
 
 
-function WriteTransaction({transactionInstance}){
+function WriteTransaction({transactionInstance, account}){
     return(
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
@@ -15,7 +15,7 @@ function WriteTransaction({transactionInstance}){
         {/* Editor */}
         <Row>
           <Col lg="7" md="12">
-            <Editor transactionInstance={transactionInstance} />
+            <Editor transactionInstance={transactionInstance} account={account} />
           </Col>
         </Row>
 

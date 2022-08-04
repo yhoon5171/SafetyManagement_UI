@@ -11,12 +11,12 @@ const MainNavbar = ({ layout, stickyTop }) => {
   const classes = classNames(
     "main-navbar",
     "bg-white",
-    stickyTop && "sticky-top"
+
   );
 
   return (
-    <div className={classes}>
-      <Container className="p-0">
+    <div className={classes} style={{width:"100%"}}>
+      <Container className="p-0" style={{maxWidth:"3000px"}}>
         <Navbar type="light" className="align-items-stretch flex-md-nowrap p-0">
           <NavbarSearch />
           <NavbarNav />

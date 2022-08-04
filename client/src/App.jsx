@@ -210,9 +210,9 @@ import TransactionContract from "../src/contracts/Transaction.json"
 import Web3 from 'web3';
 import moment from "moment";
 
-export default function App({block_list, transactionInstance}) {
+export default function App({block_list, transactionInstance, account}) {
   
-
+  console.log("App!!!")
 
   return(
       <Container fluid>
@@ -227,7 +227,7 @@ export default function App({block_list, transactionInstance}) {
           >
             {<MainNavbar />}
             <Routes>
-              <Route path="/" element={<Navigate to="/all"/>} />
+              <Route path="" element={<Navigate to="/all"/>} />
               <Route path="/all" element={<All block_list={block_list}/>} />
               <Route path="/cctv" element={<CCTV/>} />
               <Route path="/documents" element={<Documents/>} />
@@ -235,8 +235,9 @@ export default function App({block_list, transactionInstance}) {
               <Route path="/temp" element={<Temp/>} />
               <Route path="/pressure" element={<Pressure/>} />
               <Route path="/ray" element={<Ray/>} />
-              <Route path="/writetransaction" element={<WriteTransaction transactionInstance={transactionInstance} />}/>
+              <Route path="/writetransaction" element={<WriteTransaction transactionInstance={transactionInstance} account={account} />}/>
             </Routes>
+            <br></br><br></br>
             {<MainFooter />}
           </Col>
         </Row>
