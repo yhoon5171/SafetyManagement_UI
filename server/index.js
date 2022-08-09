@@ -97,15 +97,16 @@ app.post('/onLogin', (req, res) => {
                 res.send({ 'msg': '입력하신 id 가 일치하지 않습니다.'})
             } 
             else { // 동일한 id 가 있으면 비밀번호 일치 확인
-                const sql2 = `SELECT id as userID, pw as userPw from user_info where id = ?`;
+                const sql2 = `SELECT id as userID, pw as userPw, company as company from user_info where id = ?`;
                 // sql 란에 필요한 parameter 값을 순서대로 기재
                 const params = [user_id]
                 db.query(sql2, params, (err, data) => {
                     const same = bcrypt.compareSync(user_pw, data[0].userPw); 
                     if(same) {
                         res.send(data[0])
+                        res.send({'company': [data[0].company]})
                     } else {
-                        res.send(err)
+                        res.send({ 'msg': '비밀번호가 틀렸습니다.'})
                     }
                 })
             }

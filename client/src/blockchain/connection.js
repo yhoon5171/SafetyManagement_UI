@@ -72,7 +72,12 @@ export default function Connection() {
         if (!error){
           transaction.deployed().then(instance => {
             setTransactionInstance(instance);
-            setAccount(accounts[0]);
+            let temp = 0;
+            if(sessionStorage.getItem('company') == 'SDS') temp = 0;
+            else if(sessionStorage.getItem('company') == 'KLL') temp = 1;
+            else if(sessionStorage.getItem('company') == 'KOR') temp = 2;
+            else if(sessionStorage.getItem('company') == 'LOS') temp = 3;
+            setAccount(accounts[temp]);
             setLoading(true);
           })
         }
@@ -119,6 +124,7 @@ export default function Connection() {
       console.log('events.length = ', events.length);
       console.log(events);
       console.log('block_list = ', block_list);
+      console.log(account);
   
     }
 

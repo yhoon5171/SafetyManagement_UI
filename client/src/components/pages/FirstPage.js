@@ -47,7 +47,7 @@
 //   )
 // };
 
-import React from 'react'
+import React, { useRef, useEffect, useState } from "react";
 
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../../App.css'
@@ -55,13 +55,32 @@ import { Routes, Route, Link } from 'react-router-dom'
 
 import Login from './Login'
 import SignUp from './SignUp'
+import Connection from '../../blockchain/connection';
 
 export default function FirstPage() {
+   // 로그인 상태 관리
+   const [isLogin, setIsLogin] = useState(false)
+ 
+   useEffect(() => {
+     if(sessionStorage.getItem('user_id') === null){
+     // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 없다면
+       console.log('isLogin ?? :: ', isLogin)
+     } else {
+     // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
+     // 로그인 상태 변경
+       setIsLogin(true)
+       console.log('isLogin ?? :: ', isLogin)
+     }
+   })
+
   return (
-          <Routes>
-              <Route exact path="/" element={<Login />} />
-              <Route path="/sign-in" element={<Login />} />
-              <Route path="/sign-up" element={<SignUp />} />
-          </Routes>
+    
+    <div>
+
+        {isLogin ? 
+      	// Main 컴포넌트 호출 시 isLogin 이라는 props 값을 전달
+        <Connection/> : 
+        <Login />}
+    </div>
   )
 };

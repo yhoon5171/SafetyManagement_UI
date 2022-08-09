@@ -20,6 +20,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/shards-dashboards.1.1.0.min.css"
 
 import { Link, useNavigate } from 'react-router-dom'
+import moment from "moment";
+import Axios from 'axios';
 
 export default function SignUp()  {
   const [CompanySelect, setCompanySelect] = useState("")
@@ -27,25 +29,36 @@ export default function SignUp()  {
   const [Password, setPassword] = useState("")
   const [Password2, setPassword2] = useState("")
   const [Name, setName] = useState("")
-  const [PhoneNumber, setPhoneNumber] = useState("")
+  const [Email, setEmail] = useState("")
 
   const Company_select = (e) => {
     setCompanySelect(e.target.value);
     console.log(CompanySelect);
   };
 
+  
+
+  const onClickLogin = () => {
+    Axios.post('http://localhost:3001/signup', null, {
+        params: {
+        'id': ID,
+        'pw': Password2,
+        'nick': ' ',
+        'email': Email,
+        'name': Name,
+        'company': CompanySelect
+        }
+    })
+    .then(res => {
+    
+      console.log(res)
+      alert('등록 완료')
+      document.location.href = '/'
+    })
+    .catch()
+  }
+
   return(
-    <div className="App">
-    <div className="auth-wrapper" style ={{height: "130vh"}}>
-        <div className="auth-inner" style={{width: "550px"}}>
-      <Link to={'/'}>
-      <h2 style ={{  left: "50%",
-                      top: "12%",
-                      transform: "translate(-50%, -50%)",
-                      position: "absolute",
-                      fontWeight: "bold"
-                      }}>Safety Management</h2>
-      </Link>
       <ListGroup flush>
       <ListGroupItem className="p-3">
         <Row>
@@ -74,6 +87,7 @@ export default function SignUp()  {
                 <label htmlFor="feInputAddress2">비밀번호</label>
                 <FormInput
                   id="feInputAddress2"
+                  type='password'
                   size="lg"
                   onChange = {(event) => setPassword(event.target.value)}
                 />
@@ -83,6 +97,7 @@ export default function SignUp()  {
                 <label htmlFor="feInputAddress2">비밀번호 재확인</label>
                 <FormInput
                   id="feInputAddress2"
+                  type='password'
                   size="lg"
                   onChange = {(event) => setPassword2(event.target.value)}
                 />
@@ -98,22 +113,19 @@ export default function SignUp()  {
               </FormGroup>
 
               <FormGroup>
-                <label htmlFor="feInputAddress2">휴대전화</label>
+                <label htmlFor="feInputAddress2">이메일</label>
                 <FormInput
                   id="feInputAddress2"
                   size="lg"
-                  onChange = {(event) => setPhoneNumber(event.target.value)}
+                  onChange = {(event) => setEmail(event.target.value)}
                 />
               </FormGroup>
               <br></br>
-              <Button block size="lg" theme="secondary" className="mb-1 mr-1">회원가입</Button>
+              <Button block size="lg" theme="secondary" className="mb-1 mr-1" onClick={onClickLogin}>회원가입</Button>
             </Form>
           </Col>
         </Row>
       </ListGroupItem>
     </ListGroup>
-    </div>
-    </div>
-      </div>
   )
 }
