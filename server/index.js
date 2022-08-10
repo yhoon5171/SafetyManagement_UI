@@ -104,7 +104,6 @@ app.post('/onLogin', (req, res) => {
                     const same = bcrypt.compareSync(user_pw, data[0].userPw); 
                     if(same) {
                         res.send(data[0])
-                        res.send({'company': [data[0].company]})
                     } else {
                         res.send({ 'msg': '비밀번호가 틀렸습니다.'})
                     }
