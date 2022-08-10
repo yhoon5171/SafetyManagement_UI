@@ -59,7 +59,9 @@ export default function Login()  {
 
     return (
     <div className="App">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <div className="auth-wrapper">
+        &nbsp;&nbsp;&nbsp;
         <div className="auth-inner">
         <Link to={'/'} style ={{textDecoration: "none"}}>
         <h2 style ={{ 
@@ -113,6 +115,7 @@ export default function Login()  {
         }
         
       </div>
+      &nbsp;&nbsp;&nbsp;
       </div>
       </div>
     )
