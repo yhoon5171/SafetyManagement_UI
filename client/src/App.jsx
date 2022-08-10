@@ -213,7 +213,8 @@ import moment from "moment";
 export default function App({block_list, transactionInstance, account}) {
   
   console.log("App!!!")
-
+  console.log(transactionInstance)
+  console.log(account)
   return(
       <Container fluid>
         <Row>

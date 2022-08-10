@@ -84,6 +84,8 @@ export default function Connection() {
       })
       
     }
+    console.log(transactionInstance)
+    console.log(account)
 
     componentWillMount();    
 
