@@ -204,7 +204,7 @@ function CheckList({transactionInstance}){
         
   
   
-        for(let i = 0; i < events.length; i += 1){
+        for(let i = events.length - 1; i >= 0; i--){
           
           var time_ = moment.unix(events[i].returnValues.time);
           var fileurl = 'https://ipfs.infura.io/ipfs/';
