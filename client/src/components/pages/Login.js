@@ -61,14 +61,12 @@ export default function Login()  {
     <div className="App">
     <div className="auth-wrapper">
         <div className="auth-inner">
-        <Link to={'/'}>
-        <h2 style ={{  left: "50%",
-                        top: "24%",
-                        transform: "translate(-50%, -50%)",
-                        position: "absolute",
+        <Link to={'/'} style ={{textDecoration: "none"}}>
+        <h2 style ={{ 
                         fontWeight: "bold"
-                        }}>Safety Management</h2>
+                        }}>&nbsp;&nbsp;&nbsp;Safety Management</h2>
         </Link>
+        <br></br>
         {
             signup ? <SignUp />
             : 
@@ -94,7 +92,7 @@ export default function Login()  {
                             <br></br>
                             <Button block size="lg" theme="secondary" className="mb-1 mr-1" onClick={onClickLogin}>로그인</Button>
                             
-                            <Button block size="lg" theme="secondary" className="mb-1 mr-1" onClick={(event) => setsignup(true)}>
+                            <Button block size="lg" theme="secondary" className="mb-1 mr-1" outline onClick={(event) => setsignup(true)}>
                                 회원가입
                             </Button>
                         </form>
