@@ -60,7 +60,7 @@ export default function Connection() {
 
   useEffect(() => {
     async function componentWillMount(e) {
-      const web3 = new Web3(new Web3.providers.HttpProvider('http://ec2-54-180-152-10.ap-northeast-2.compute.amazonaws.com:8545'));
+      const web3 = new Web3(new Web3.providers.HttpProvider('http://ec2-13-125-141-124.ap-northeast-2.compute.amazonaws.com:8545'));
       setWeb3(web3);
       console.log(web3)
       const contract = require("truffle-contract");

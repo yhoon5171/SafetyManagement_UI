@@ -39,7 +39,7 @@ export default function SignUp()  {
   
 
   const onClickLogin = () => {
-    Axios.post('http://ec2-54-180-152-10.ap-northeast-2.compute.amazonaws.com:3001/signup', null, {
+    Axios.post('http://ec2-13-125-141-124.ap-northeast-2.compute.amazonaws.com:3001/signup', null, {
         params: {
         'id': ID,
         'pw': Password2,

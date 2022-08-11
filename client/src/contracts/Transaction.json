@@ -10568,10 +10568,16 @@
       "links": {},
       "address": "0x2C8Ae1450Eac4A2328B5953C6Ec4BB1e65c97231",
       "transactionHash": "0xf9abdc85f71b57ae905bc041eb9ce9c0d26c5bcb1fd98cb5b7ddf7cec83afc28"
+    },
+    "1660186230075": {
+      "events": {},
+      "links": {},
+      "address": "0xE6c79b59864872EcA48eE6937D29C9a34cF571AF",
+      "transactionHash": "0x44f38665ad13a251bbb72eaaee1466b7cab1745bbcfed1aed69673fbfa72c602"
     }
   },
   "schemaVersion": "3.4.8",
-  "updatedAt": "2022-08-10T08:11:56.745Z",
+  "updatedAt": "2022-08-11T03:31:12.019Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
