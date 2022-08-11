@@ -14,6 +14,22 @@ import {
   Button
 } from "shards-react";
 import { create as ipfsHttpClient } from 'ipfs-http-client'
+// const ipfsClient = require('ipfs-http-client');
+
+// const projectId = '1qmt';
+// const projectSecret = 'c920';
+// const auth =
+//     'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+
+// const client = ipfsClient.create({
+//     host: 'ipfs.infura.io',
+//     port: 5001,
+//     protocol: 'https',
+//     headers: {
+//         authorization: auth,
+//     },
+// });
+
 const ipfs = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 
@@ -39,7 +55,9 @@ function CompleteFormExample({transactionInstance, account}){
     e.preventDefault()
 
     try {
+      console.log('Error ipfs')
         const added = await ipfs.add(file);
+        console.log('Error ipfs')
         console.log(file)
         console.log(added)
         const url = `https://ipfs.infura.io/ipfs/${added.path}`

@@ -71,6 +71,8 @@ export default function FirstPage() {
        setIsLogin(true)
        console.log('isLogin ?? :: ', isLogin)
      }
+     
+    // sessionStorage.removeItem('search')
    })
 
   return (

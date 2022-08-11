@@ -209,6 +209,7 @@ import "./App.css";
 import TransactionContract from "../src/contracts/Transaction.json"
 import Web3 from 'web3';
 import moment from "moment";
+import Search_Result from "./components/pages/search_result";
 
 export default function App({block_list, transactionInstance, account}) {
   
@@ -232,6 +233,7 @@ export default function App({block_list, transactionInstance, account}) {
               <Route path="/cctv" element={<CCTV/>} />
               <Route path="/documents" element={<Documents transactionInstance={transactionInstance}/>} />
               <Route path="/checklist" element={<CheckList transactionInstance={transactionInstance}/>} />
+              <Route path="/search_result" element={<Search_Result transactionInstance={transactionInstance}/>} />
               <Route path="/temp" element={<Temp/>} />
               <Route path="/pressure" element={<Pressure/>} />
               <Route path="/ray" element={<Ray/>} />
