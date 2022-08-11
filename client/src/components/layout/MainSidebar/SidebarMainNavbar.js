@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom"
 import { Navbar, NavbarBrand, } from "shards-react";
 
 import { Dispatcher, Constants } from "./../../flux";
@@ -30,6 +31,7 @@ class SidebarMainNavbar extends React.Component {
             href="#"
             style={{ lineHeight: "25px" }}
           >
+            
             <div className="d-table m-auto">
               {/* <img
                 id="main-logo"
@@ -39,9 +41,12 @@ class SidebarMainNavbar extends React.Component {
                 alt="Shards Dashboard"
               /> */}
               {!hideLogoText && (
+                
+            <Link to='/'>
                 <span className="d-none d-md-inline ml-1">
                   Safety Management
                 </span>
+              </Link>
               )}
             </div>
           </NavbarBrand>

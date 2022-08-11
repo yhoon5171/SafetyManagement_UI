@@ -54,16 +54,30 @@ function CheckList({transactionInstance}){
       console.log('child.length = %d', child.length);
       for(let i = start; i < end; i++){
         console.log('i = %d, start = %d, end = %d', i, start, end);
-        arr.push(
-        <tr key={i} onClick={() => detail_click(i)} style={{cursor: "pointer"}}>
-          <th scope="row" >{i+1}</th>
-          <td >{child[i].name}</td>
-          <td>{child[i].responsible}</td>
-          <td>{child[i].filetype}</td>
-          <td>{child[i].filedes}</td>
-          <td>{child[i].time}</td>
-        </tr>
-        )
+        // if(sessionStorage.getItem('search') === null){
+          arr.push(
+          <tr key={i} onClick={() => detail_click(i)} style={{cursor: "pointer"}}>
+            <th scope="row" >{i+1}</th>
+            <td >{child[i].name}</td>
+            <td>{child[i].responsible}</td>
+            <td>{child[i].filetype}</td>
+            <td>{child[i].filedes}</td>
+            <td>{child[i].time}</td>
+          </tr>
+          )
+        // }
+        // else if(sessionStorage.getItem('search') === child[i].name || sessionStorage.getItem('search') === child[i].responsible || sessionStorage.getItem('search') === child[i].filetype || sessionStorage.getItem('search') === child[i].filedes){
+        //   arr.push(
+        //     <tr key={i} onClick={() => detail_click(i)} style={{cursor: "pointer"}}>
+        //       <th scope="row" >{i+1}</th>
+        //       <td >{child[i].name}</td>
+        //       <td>{child[i].responsible}</td>
+        //       <td>{child[i].filetype}</td>
+        //       <td>{child[i].filedes}</td>
+        //       <td>{child[i].time}</td>
+        //     </tr>
+        //     )
+        // }
       }
   
       return arr;
@@ -237,13 +251,14 @@ function CheckList({transactionInstance}){
     }
 
     updateAllTransactions();
+    sessionStorage.removeItem('search')
 
 }, );
 
     return(
       <Container fluid className="main-content-container px-4">
         <Row noGutters className="page-header py-4">
-          <PageTitle sm="4" title="All" className="text-sm-left" />
+          <PageTitle sm="4" title="Check List" className="text-sm-left" />
         </Row>
         {Showboard()}
         {/* Default Light Table */}
