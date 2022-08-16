@@ -37,7 +37,7 @@ export default function Login()  {
 
 
     const onClickLogin = () => {
-        Axios.post('http://ec2-52-79-89-204.ap-northeast-2.compute.amazonaws.com:3001/onLogin', null, {
+        Axios.post('http://ec2-13-209-19-249.ap-northeast-2.compute.amazonaws.com:3001/onLogin', null, {
             params: {
             'user_id': inputId,
             'user_pw': inputPw
