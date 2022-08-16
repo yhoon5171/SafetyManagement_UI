@@ -16,7 +16,7 @@ function Login() {
  
 	// login 버튼 클릭 이벤트
     const onClickLogin = () => {
-        axios.post('http://ec2-13-209-19-249.ap-northeast-2.compute.amazonaws.com:3001/onLogin', null, {
+        axios.post('http://ec2-52-78-43-195.ap-northeast-2.compute.amazonaws.com:3001/onLogin', null, {
             params: {
             'user_id': inputId,
             'user_pw': inputPw
@@ -28,7 +28,7 @@ function Login() {
  
 	// 페이지 렌더링 후 가장 처음 호출되는 함수
     useEffect(() => {
-        axios.get('http://ec2-13-209-19-249.ap-northeast-2.compute.amazonaws.com:3001/login')
+        axios.get('http://ec2-52-78-43-195.ap-northeast-2.compute.amazonaws.com:3001/login')
         .then(res => console.log(res))
         .catch()
     },
