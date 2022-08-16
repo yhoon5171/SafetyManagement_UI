@@ -16,21 +16,25 @@ import {
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 // const ipfsClient = require('ipfs-http-client');
 
-// const projectId = '1qmt';
-// const projectSecret = 'c920';
-// const auth =
-//     'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+const projectId = '2DCS0fCRlt3GtE33WGUMaHo05dI';
+const projectSecret = '1df2c89edfa1422733bd46ebf81be1fa';
+const auth =
+    'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
 
-// const client = ipfsClient.create({
-//     host: 'ipfs.infura.io',
-//     port: 5001,
-//     protocol: 'https',
-//     headers: {
-//         authorization: auth,
-//     },
+const client = ipfsHttpClient({
+    host: 'infura-ipfs.io',
+    port: 5001,
+    protocol: 'https',
+    // apiPath: '/api/v0',
+    headers: {
+        authorization: auth,
+    },
+});
+// client.pin.add('QmeGAVddnBSnKc1DLE7DLV9uuTqo5F7QbaveTjr45JUdQn').then((res) => {
+//   console.log(res);
 // });
 
-const ipfs = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+// const ipfs = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 
 
@@ -56,11 +60,11 @@ function CompleteFormExample({transactionInstance, account}){
 
     try {
       console.log('Error ipfs')
-        const added = await ipfs.add(file);
+        const added = await client.add(file);
         console.log('Error ipfs')
         console.log(file)
         console.log(added)
-        const url = `https://ipfs.infura.io/ipfs/${added.path}`
+        const url = `https://safetymanagement.infura-ipfs.io/ipfs/${added.path}`
         console.log(url)
         // setUrl(url)
         setFileUrl(url)
