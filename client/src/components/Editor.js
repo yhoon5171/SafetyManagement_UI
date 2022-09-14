@@ -17,7 +17,7 @@ function Editor({transactionInstance, account}) {
   return (
     <Card small>
     <CardHeader className="border-bottom">
-      <h6 className="m-0">Form Example</h6>
+      <h6 className="m-0">Form</h6>
     </CardHeader>
     <CompleteFormExample transactionInstance={transactionInstance} account={account}/>
   </Card>

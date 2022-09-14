@@ -16,6 +16,11 @@ contract Transaction {
     event handleTransaction(string category, string name, uint256 time, string ipfs_hash, string registrant, string responsible_manager, string file_type, string file_description);
     event documentTransaction(string category, string name, uint256 time, string ipfs_hash, string registrant, string responsible_manager, string file_type, string file_description);
     event checkTransaction(string category, string name, uint256 time, string ipfs_hash, string registrant, string responsible_manager, string file_type, string file_description);
+    event cctvTransaction(string category, string name, uint256 time, string ipfs_hash, string registrant, string responsible_manager, string file_type, string file_description);
+    event tempTransaction(string category, string name, uint256 time, string ipfs_hash, string registrant, string responsible_manager, string file_type, string file_description);
+    event pressureTransaction(string category, string name, uint256 time, string ipfs_hash, string registrant, string responsible_manager, string file_type, string file_description);
+    event rayTransaction(string category, string name, uint256 time, string ipfs_hash, string registrant, string responsible_manager, string file_type, string file_description);
+
 
     //saves all the transactions of the account
     mapping (address=>transaction) transactionIndex;
@@ -37,6 +42,14 @@ contract Transaction {
             emit documentTransaction(category, name, block.timestamp, ipfs_hash, registrant, responsible_manager, file_type, file_description);
         if (keccak256(abi.encodePacked(category)) == keccak256(abi.encodePacked('CheckList')))
             emit checkTransaction(category, name, block.timestamp, ipfs_hash, registrant, responsible_manager, file_type, file_description);
+        if (keccak256(abi.encodePacked(category)) == keccak256(abi.encodePacked('CCTV')))
+            emit cctvTransaction(category, name, block.timestamp, ipfs_hash, registrant, responsible_manager, file_type, file_description);
+        if (keccak256(abi.encodePacked(category)) == keccak256(abi.encodePacked('Temp')))
+            emit tempTransaction(category, name, block.timestamp, ipfs_hash, registrant, responsible_manager, file_type, file_description);
+        if (keccak256(abi.encodePacked(category)) == keccak256(abi.encodePacked('Pressure')))
+            emit pressureTransaction(category, name, block.timestamp, ipfs_hash, registrant, responsible_manager, file_type, file_description);
+        if (keccak256(abi.encodePacked(category)) == keccak256(abi.encodePacked('Ray')))
+            emit rayTransaction(category, name, block.timestamp, ipfs_hash, registrant, responsible_manager, file_type, file_description);
     }
  
 

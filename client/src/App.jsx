@@ -198,6 +198,7 @@ import Pressure from "./components/pages/Pressure";
 import Temp from "./components/pages/Temp";
 import CheckList from "./components/pages/CheckList";
 import Documents from "./components/pages/Documents";
+import Admin from "./components/pages/Admin"
 
 import { Container, Row, Col } from "shards-react";
 import MainNavbar from "./components/layout/MainNavbar/MainNavbar";
@@ -238,6 +239,7 @@ export default function App({block_list, transactionInstance, account}) {
               <Route path="/pressure" element={<Pressure/>} />
               <Route path="/ray" element={<Ray/>} />
               <Route path="/writetransaction" element={<WriteTransaction transactionInstance={transactionInstance} account={account} />}/>
+              <Route path="/admin" element={<Admin transactionInstance={transactionInstance}/>} />
             </Routes>
             <br></br><br></br>
             {<MainFooter />}
