@@ -34,7 +34,6 @@ export default class UserActions extends React.Component {
     sessionStorage.removeItem('user_id')
     document.location.href = '/'
   }
-
   // useEffect(() => {
   
   //   async function user_set_id(){
@@ -45,18 +44,58 @@ export default class UserActions extends React.Component {
   
   // }, []);
 
+
+//   render() {
+//     return (
+//       <NavItem tag={Dropdown} caret toggle={this.toggleUserActions}>
+//         <DropdownToggle caret tag={NavLink} className="text-nowrap px-3">
+//           <span className="d-none d-md-inline-block">{sessionStorage.getItem('user_id')}</span>
+//         </DropdownToggle>
+//         <Collapse tag={DropdownMenu} right small open={this.state.visible}>
+//           <DropdownItem onClick={this.log_out} className="text-danger">
+//             <i className="material-icons text-danger">&#xE879;</i> Logout
+//           </DropdownItem>
+//           <DropdownItem onClick={this.log_out}>
+//             <i className="material-icons">&#xE7FD;</i> 트랜잭션(관리자)
+//           </DropdownItem>
+//         </Collapse>
+//       </NavItem>
+//     );
+//   }
+// }
+
+
+
+
   render() {
-    return (
-      <NavItem tag={Dropdown} caret toggle={this.toggleUserActions}>
-        <DropdownToggle caret tag={NavLink} className="text-nowrap px-3">
-          <span className="d-none d-md-inline-block">{sessionStorage.getItem('user_id')}</span>
-        </DropdownToggle>
-        <Collapse tag={DropdownMenu} right small open={this.state.visible}>
-          <DropdownItem onClick={this.log_out} className="text-danger">
-            <i className="material-icons text-danger">&#xE879;</i> Logout
-          </DropdownItem>
-        </Collapse>
-      </NavItem>
-    );
+    if (sessionStorage.getItem('user_id') == 'admin'){
+      return (<NavItem tag={Dropdown} caret toggle={this.toggleUserActions}>
+                <DropdownToggle caret tag={NavLink} className="text-nowrap px-3">
+                  <span className="d-none d-md-inline-block">{sessionStorage.getItem('user_id')}</span>
+                </DropdownToggle>
+                <Collapse tag={DropdownMenu} right small open={this.state.visible}>
+                  <DropdownItem onClick={this.log_out} className="text-danger">
+                    <i className="material-icons text-danger">&#xE879;</i> Logout
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/admin">
+                    <i className="material-icons">&#xE7FD;</i> 트랜잭션(관리자)
+                  </DropdownItem>
+                </Collapse>
+              </NavItem>
+              )
+    }
+    else {
+      return (<NavItem tag={Dropdown} caret toggle={this.toggleUserActions}>
+                  <DropdownToggle caret tag={NavLink} className="text-nowrap px-3">
+                    <span className="d-none d-md-inline-block">{sessionStorage.getItem('user_id')}</span>
+                  </DropdownToggle>
+                  <Collapse tag={DropdownMenu} right small open={this.state.visible}>
+                    <DropdownItem onClick={this.log_out} className="text-danger">
+                      <i className="material-icons text-danger">&#xE879;</i> Logout
+                    </DropdownItem>
+                  </Collapse>
+                </NavItem>
+      )
+    }
   }
 }

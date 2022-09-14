@@ -198,6 +198,7 @@ import Pressure from "./components/pages/Pressure";
 import Temp from "./components/pages/Temp";
 import CheckList from "./components/pages/CheckList";
 import Documents from "./components/pages/Documents";
+import Admin from "./components/pages/Admin"
 
 import { Container, Row, Col } from "shards-react";
 import MainNavbar from "./components/layout/MainNavbar/MainNavbar";
@@ -230,14 +231,15 @@ export default function App({block_list, transactionInstance, account}) {
             <Routes>
               <Route path="/" element={<Navigate to="/all"/>} />
               <Route path="/all" element={<All transactionInstance={transactionInstance}/>} />
-              <Route path="/cctv" element={<CCTV/>} />
+              <Route path="/cctv" element={<CCTV transactionInstance={transactionInstance}/>} />
               <Route path="/documents" element={<Documents transactionInstance={transactionInstance}/>} />
               <Route path="/checklist" element={<CheckList transactionInstance={transactionInstance}/>} />
               <Route path="/search_result" element={<Search_Result transactionInstance={transactionInstance}/>} />
-              <Route path="/temp" element={<Temp/>} />
-              <Route path="/pressure" element={<Pressure/>} />
-              <Route path="/ray" element={<Ray/>} />
+              <Route path="/temp" element={<Temp transactionInstance={transactionInstance}/>} />
+              <Route path="/pressure" element={<Pressure transactionInstance={transactionInstance}/>} />
+              <Route path="/ray" element={<Ray transactionInstance={transactionInstance}/>} />
               <Route path="/writetransaction" element={<WriteTransaction transactionInstance={transactionInstance} account={account} />}/>
+              <Route path="/admin" element={<Admin transactionInstance={transactionInstance}/>} />
             </Routes>
             <br></br><br></br>
             {<MainFooter />}

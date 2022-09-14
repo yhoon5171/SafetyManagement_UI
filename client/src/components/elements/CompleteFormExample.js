@@ -168,6 +168,10 @@ const preUpload = (e) => {
                   <option value = "선택">선택</option>
                   <option value = "Document">전자문서</option>
                   <option value = "CheckList">체크리스트</option>
+                  <option value = "CCTV">CCTV</option>
+                  <option value = "Temp">온도 센서</option>
+                  <option value = "Pressure">압력 센서</option>
+                  <option value = "Ray">적외선 센서</option>
                   {/* <option>온도 센서</option>
                   <option>압력 센서</option>
                   <option>적외선 센서</option>  */}
