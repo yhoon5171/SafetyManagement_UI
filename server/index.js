@@ -115,6 +115,18 @@ app.post('/onLogin', (req, res) => {
     })
 });
 
+app.post('/sendCCTV', (req, res) => {
+    // console.log(`= = = > req : ${util.inspect(req)}`)
+    const sql1 = 'SELECT * FROM cctv'
+    db.query(sql1, (err, data) => {
+        if(!err) {
+            res.send(data)
+        } else {
+            res.send(err)
+        }
+    })
+});
+
 app.listen(PORT, ()=>{
     console.log(`running on port ${PORT}`);
 });

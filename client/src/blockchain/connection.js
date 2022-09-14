@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import TransactionContract from "../contracts/Transaction.json"
 import Web3 from 'web3';
 import moment from "moment";
-// import Axios from 'axios';
+import axios from 'axios';
 // import Login from './login';
 // import Signup from './signup';
 import App from '../App.jsx';
@@ -57,6 +57,8 @@ export default function Connection() {
   const [loading, setLoading] = useState(false);
   
   const [block_list, setblock_list] = useState([]);
+
+  
 
   useEffect(() => {
     async function componentWillMount(e) {
@@ -128,7 +130,43 @@ export default function Connection() {
   
     }
 
-    if (loading == true) updateAllTransactions();
+    if (loading == true){
+      
+      console.log("CCtv data: ")
+
+      axios.post('http://localhost:3001/sendCCTV', null, {
+        params: {
+        }
+      })
+      .then(async res => {
+        console.log(res)
+
+        let Regsitrant = "Kim"
+        let Responsible = "Kim"
+
+
+        for(let i = 0; i < res.data.length; i++){
+          
+          
+          let Filename = "Sector 1 "
+          Filename += res.data[i].time
+          let Filedes = "Sector 1 "
+          Filedes += res.data[i].time
+
+          await transactionInstance.sendTrans("CCTV", Filename, res.data[i].ipfs_hash, Regsitrant, Responsible, "avi", Filedes,{
+            from: account,
+            //value: e.web3.utils.toWei('10', "ether"),
+            gas: 1000000
+          })
+        }
+
+      })
+      .catch()
+
+
+
+      updateAllTransactions();
+    }
 
 }, [loading]);
 
