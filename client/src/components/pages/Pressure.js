@@ -98,7 +98,7 @@ function PressureList({transactionInstance}){
           <Col>
             <Card small className="mb-4">
               <CardHeader className="border-bottom">
-                <h6 className="m-0">Active Users</h6>
+                <h6 className="m-0">Tables</h6>
               </CardHeader>
               <CardBody className="p-0 pb-3">
                 <table className="table mb-0">
@@ -258,7 +258,7 @@ function PressureList({transactionInstance}){
     return(
       <Container fluid className="main-content-container px-4">
         <Row noGutters className="page-header py-4">
-          <PageTitle sm="4" title="Pressure List" className="text-sm-left" />
+          <PageTitle sm="4" title="Pressure" className="text-sm-left" />
         </Row>
         {Showboard()}
         {/* Default Light Table */}

@@ -231,13 +231,13 @@ export default function App({block_list, transactionInstance, account}) {
             <Routes>
               <Route path="/" element={<Navigate to="/all"/>} />
               <Route path="/all" element={<All transactionInstance={transactionInstance}/>} />
-              <Route path="/cctv" element={<CCTV/>} />
+              <Route path="/cctv" element={<CCTV transactionInstance={transactionInstance}/>} />
               <Route path="/documents" element={<Documents transactionInstance={transactionInstance}/>} />
               <Route path="/checklist" element={<CheckList transactionInstance={transactionInstance}/>} />
               <Route path="/search_result" element={<Search_Result transactionInstance={transactionInstance}/>} />
-              <Route path="/temp" element={<Temp/>} />
-              <Route path="/pressure" element={<Pressure/>} />
-              <Route path="/ray" element={<Ray/>} />
+              <Route path="/temp" element={<Temp transactionInstance={transactionInstance}/>} />
+              <Route path="/pressure" element={<Pressure transactionInstance={transactionInstance}/>} />
+              <Route path="/ray" element={<Ray transactionInstance={transactionInstance}/>} />
               <Route path="/writetransaction" element={<WriteTransaction transactionInstance={transactionInstance} account={account} />}/>
               <Route path="/admin" element={<Admin transactionInstance={transactionInstance}/>} />
             </Routes>
