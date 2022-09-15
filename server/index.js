@@ -115,6 +115,7 @@ app.post('/onLogin', (req, res) => {
     })
 });
 
+
 app.post('/sendCCTV', (req, res) => {
     // console.log(`= = = > req : ${util.inspect(req)}`)
     const sql1 = 'SELECT * FROM cctv'
@@ -142,6 +143,7 @@ app.post('/sendhum_tem', (req, res) => {
         }
     })
 });
+
 
 app.listen(PORT, ()=>{
     console.log(`running on port ${PORT}`);

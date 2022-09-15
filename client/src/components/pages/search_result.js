@@ -224,7 +224,15 @@ function Search_Result({transactionInstance}){
         for(let i = events.length - 1; i >= 0; i--){
           
           var time_ = moment.unix(events[i].returnValues.time);
-          var fileurl = 'https://ipfs.infura.io/ipfs/';
+          if(events[i].returnValues.category.toString() == "CCTV"){
+            var fileurl = 'https://ipfs.io/ipfs/';
+          }
+          else if (events[i].returnValues.category.toString() == "Temp"){
+            var fileurl = 'https://ipfs.io/ipfs/';
+          }
+          else{
+            var fileurl = 'https://infura-ipfs.io/ipfs/';
+          }
           fileurl += events[i].returnValues.ipfs_hash.toString();
           
           console.log(fileurl)

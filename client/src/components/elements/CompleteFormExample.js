@@ -30,6 +30,11 @@ const client = ipfsHttpClient({
         authorization: auth,
     },
 });
+// client.pin.add('QmeGAVddnBSnKc1DLE7DLV9uuTqo5F7QbaveTjr45JUdQn').then((res) => {
+//   console.log(res);
+// });
+
+// const ipfs = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 
 
@@ -55,10 +60,10 @@ function CompleteFormExample({transactionInstance, account}){
 
     try {
       console.log('Error ipfs')
-      const added = await client.add(file);
-      console.log('Error ipfs')
-      console.log(file)
-      console.log(added)
+        const added = await client.add(file);
+        console.log('Error ipfs')
+        console.log(file)
+        console.log(added)
         const url = `https://safetymanagement.infura-ipfs.io/ipfs/${added.path}`
         console.log(url)
         // setUrl(url)
@@ -165,9 +170,9 @@ const preUpload = (e) => {
                 <FormSelect id="feInputState" value={CategorySelect} onChange={category_select}>
                   {/* <option>CCTV</option> */}
                   <option value = "선택">선택</option>
+                  <option value = "CCTV">CCTV</option>
                   <option value = "Document">전자문서</option>
                   <option value = "CheckList">체크리스트</option>
-                  <option value = "CCTV">CCTV</option>
                   <option value = "Temp">온도 센서</option>
                   <option value = "Pressure">압력 센서</option>
                   <option value = "Ray">적외선 센서</option>

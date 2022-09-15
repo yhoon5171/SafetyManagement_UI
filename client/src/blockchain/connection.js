@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import TransactionContract from "../contracts/Transaction.json"
 import Web3 from 'web3';
 import moment from "moment";
-import axios from 'axios';
+// import Axios from 'axios';
 // import Login from './login';
 // import Signup from './signup';
 import App from '../App.jsx';
@@ -58,11 +58,9 @@ export default function Connection() {
   
   const [block_list, setblock_list] = useState([]);
 
-  
-
   useEffect(() => {
     async function componentWillMount(e) {
-      const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+      const web3 = new Web3(new Web3.providers.HttpProvider('http://ec2-52-78-43-195.ap-northeast-2.compute.amazonaws.com:8545'));
       setWeb3(web3);
       console.log(web3)
       const contract = require("truffle-contract");
