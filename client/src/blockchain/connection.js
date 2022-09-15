@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import TransactionContract from "../contracts/Transaction.json"
 import Web3 from 'web3';
 import moment from "moment";
-// import Axios from 'axios';
+import axios from 'axios';
 // import Login from './login';
 // import Signup from './signup';
 import App from '../App.jsx';
