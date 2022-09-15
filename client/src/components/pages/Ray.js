@@ -188,7 +188,6 @@ function RayList({transactionInstance}){
                       <br></br>
                       <label htmlFor="feInputAddress2">파일 URL</label>
                       <br></br>
-                      FileUrl :{" "}
                       <a href={block_list[detailcnt].ipfsHash} target="_blank" rel="noopener noreferrer">
                       {block_list[detailcnt].ipfsHash}
                       </a>
