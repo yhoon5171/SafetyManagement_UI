@@ -98,7 +98,7 @@ function CheckList({transactionInstance}){
           <Col>
             <Card small className="mb-4">
               <CardHeader className="border-bottom">
-                <h6 className="m-0">Table</h6>
+                <h6 className="m-0">Active Users</h6>
               </CardHeader>
               <CardBody className="p-0 pb-3">
                 <table className="table mb-0">
@@ -150,7 +150,7 @@ function CheckList({transactionInstance}){
           <Col lg="7" md="12">
           <Card small>
           <CardHeader className="border-bottom">
-            <h6 className="m-0">Form</h6>
+            <h6 className="m-0">Form Example</h6>
           </CardHeader>
             <ListGroup flush>
             <ListGroupItem className="p-3">
@@ -221,7 +221,7 @@ function CheckList({transactionInstance}){
         for(let i = events.length - 1; i >= 0; i--){
           
           var time_ = moment.unix(events[i].returnValues.time);
-          var fileurl = 'https://ipfs.infura.io/ipfs/';
+          var fileurl = 'https://infura-ipfs.io/ipfs/';
           fileurl += events[i].returnValues.ipfs_hash.toString();
           
           block_list.push({

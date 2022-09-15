@@ -115,6 +115,34 @@ app.post('/onLogin', (req, res) => {
     })
 });
 
+app.post('/sendCCTV', (req, res) => {
+    // console.log(`= = = > req : ${util.inspect(req)}`)
+    const sql1 = 'SELECT * FROM cctv'
+    db.query(sql1, (err, data) => {
+        if(!err) {
+            const sql2 = 'DELETE FROM cctv'
+            db.query(sql2, (err) => {})
+            res.send(data)
+        } else {
+            res.send(err)
+        }
+    })
+});
+
+app.post('/sendhum_tem', (req, res) => {
+    // console.log(`= = = > req : ${util.inspect(req)}`)
+    const sql1 = 'SELECT * FROM hum_tem'
+    db.query(sql1, (err, data) => {
+        if(!err) {
+            const sql2 = 'DELETE FROM hum_tem'
+            db.query(sql2, (err) => {})
+            res.send(data)
+        } else {
+            res.send(err)
+        }
+    })
+});
+
 app.listen(PORT, ()=>{
     console.log(`running on port ${PORT}`);
 });
