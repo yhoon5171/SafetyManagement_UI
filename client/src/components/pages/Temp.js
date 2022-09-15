@@ -150,7 +150,7 @@ function TempList({transactionInstance}){
           <Col lg="7" md="12">
           <Card small>
           <CardHeader className="border-bottom">
-            <h6 className="m-0">Form Example</h6>
+            <h6 className="m-0">Form</h6>
           </CardHeader>
             <ListGroup flush>
             <ListGroupItem className="p-3">
